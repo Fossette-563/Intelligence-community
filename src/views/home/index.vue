@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>控制台</div>
 </template>
 
 <script>
-export default {
-  name: 'Main'
-}
+export default {}
 </script>
 
 <style lang="scss" scoped></style>

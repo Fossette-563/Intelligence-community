@@ -1,11 +1,11 @@
 <template>
   <div class="layout-page">
     <el-container>
-      <el-header><Header></Header></el-header>
+      <el-aside width="200px"><Aside></Aside></el-aside>
       <el-container>
-        <el-aside width="200px"><Aside></Aside></el-aside>
+        <el-header><Header></Header></el-header>
         <el-main
-          ><Main><router-view /></Main
+          ><Main></Main
         ></el-main>
       </el-container>
     </el-container>

@@ -16,6 +16,7 @@ module.exports = {
     'key-spacing': 'off',
     'no-unused-vars': 'off',
     'spaced-comment': 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    ' semi': 'off'
   }
 }

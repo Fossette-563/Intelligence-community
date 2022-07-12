@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>菜单管理</div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'MenuPage'
 }
 </script>
 

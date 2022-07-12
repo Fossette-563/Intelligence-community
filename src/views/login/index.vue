@@ -100,21 +100,21 @@ export default {
     async setHandLogin() {
       try {
         this.setloading = true
-        const data = await this.login(this.loginForm)
+        await this.login(this.loginForm)
         router.push('./')
+        this.setUserInfo()
       } catch (error) {
         console.log(error)
       }
       this.setloading = false
-    }
-  },
-  /**用户请求 */
-  async setuserInfo() {
-    try {
-      const user = await this.UserInfo()
-      console.log(user, 'uu')
-    } catch (error) {
-      console.log(error)
+    },
+    /**用户请求 */
+    async setUserInfo() {
+      try {
+        await this.UserInfo()
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

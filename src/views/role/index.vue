@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>角色管理</div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'RolePage'
 }
 </script>
 

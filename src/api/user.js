@@ -16,12 +16,16 @@ const login = (data) => {
 /**
  * 用户接口
  */
-
 const userInfo = () => {
   return request({ url: '/user/info', method: 'GET' })
+}
+/**侧边栏接口 */
+const nav = () => {
+  return request({ url: '/menu/nav', method: 'GET' })
 }
 export default {
   imgcode,
   login,
-  userInfo
+  userInfo,
+  nav
 }
