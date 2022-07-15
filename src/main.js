@@ -5,8 +5,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/common.scss'
+import install from '@/utils/components'
 import '@/permission'
-
+import Fragment from 'vue-fragment'
+Vue.use(Fragment.Plugin)
+Vue.use(install)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

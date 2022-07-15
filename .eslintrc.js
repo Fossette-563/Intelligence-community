@@ -17,6 +17,9 @@ module.exports = {
     'no-unused-vars': 'off',
     'spaced-comment': 'off',
     'vue/multi-word-component-names': 'off',
-    ' semi': 'off'
+    ' semi': 'off',
+    'comma-dangle': 'off',
+    'comma-spacing': 'off',
+    'eol-last': 'off'
   }
 }

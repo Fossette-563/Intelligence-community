@@ -13,8 +13,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.el-menu {
-  border-right: none;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -12,12 +12,11 @@ router.beforeEach(async (to, from, next) => {
       next(from.path)
     } else {
       const nav = store.getters.nav
-      if (nav) {
-        next()
-      } else {
-        // 获取数据
-        const navlist = await store.dispatch('menu/getNav', nav)
-        console.log(navlist, 'nn')
+      if (JSON.stringify(nav) === '[]') {
+        const { authoritys } = await store.dispatch('menu/getNav', nav)
+        const routes = await store.dispatch('permission/getPermiss', authoritys)
+        routes.forEach((item) => router.addRoute(item))
+        return next(to.path)
       }
       next()
     }

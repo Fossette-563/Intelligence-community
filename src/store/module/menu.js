@@ -3,21 +3,25 @@ import { getItem, setItem } from '@/utils/storage'
 export default {
   namespaced: true,
   state: {
-    menu: getItem('menus') || []
+    menu: [],
+    foldedstatus: false
   },
   mutations: {
+    setfolded(state) {
+      state.foldedstatus = !state.foldedstatus
+    },
+    // 侧边栏
     setNav(state, menu) {
       state.menu = menu
-      setItem('menus', menu)
     }
   },
   actions: {
+    // 获取左侧菜单数据
     async getNav({ commit }) {
       try {
-        const { menus } = await UserApi.nav()
-        console.log(menus, 'nav')
+        const { menus, authoritys } = await UserApi.nav()
         commit('setNav', menus)
-        return menus
+        return { menus, authoritys }
       } catch (error) {
         console.log(error)
       }

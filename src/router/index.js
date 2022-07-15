@@ -10,7 +10,7 @@ VueRouter.prototype.push = function push(location) {
 
 Vue.use(VueRouter)
 
-const publicRoutes = [
+export const publicRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -29,13 +29,17 @@ const publicRoutes = [
           title: '控制台',
           icon: 's-home'
         }
+      },
+      {
+        path: '/404',
+        component: () => import('@/views/error/404')
       }
     ]
   }
 ]
-const privateRoutes = [user, role, menu]
+export const privateRoutes = [user, role, menu]
 const router = new VueRouter({
-  routes: [...publicRoutes, ...privateRoutes]
+  routes: publicRoutes
 })
 
 export default router

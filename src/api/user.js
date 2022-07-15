@@ -23,9 +23,34 @@ const userInfo = () => {
 const nav = () => {
   return request({ url: '/menu/nav', method: 'GET' })
 }
+/**用户列表数据 */
+const userList = (data) => {
+  return request({
+    url: '/user/list',
+    method: 'GET',
+    data
+  })
+}
+/**添加用户接口 */
+const addUserList = (data) => {
+  return request({ url: '/user/add', method: 'POST', data })
+}
+/**编辑用户接口 */
+const editUserList = (data) => {
+  return request({ url: '/user/update', method: 'PUT', data })
+}
+/**分配角色 */
+const assign = (id, data) => {
+  return request({ url: `/user/assign/${id}`, method: 'POST', data })
+}
+/** */
 export default {
   imgcode,
   login,
   userInfo,
-  nav
+  nav,
+  userList,
+  addUserList,
+  editUserList,
+  assign
 }

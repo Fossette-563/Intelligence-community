@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fragment>
     <el-menu-item :index="item.path" v-if="!item.children">
       <i :class="'el-icon-' + item.icon"></i>
       <span slot="title">{{ item.label }}</span>
@@ -18,7 +18,7 @@
         :key="it.path"
       ></MenuItem>
     </el-submenu>
-  </div>
+  </fragment>
 </template>
 
 <script>

@@ -1,12 +1,12 @@
 <template>
   <div class="layout-page">
     <el-container>
-      <el-aside width="200px"><Aside></Aside></el-aside>
+      <el-aside :width="$store.state.menu.foldedstatus ? '60px' : '200px'"
+        ><Aside></Aside
+      ></el-aside>
       <el-container>
         <el-header><Header></Header></el-header>
-        <el-main
-          ><Main></Main
-        ></el-main>
+        <el-main><Main></Main></el-main>
       </el-container>
     </el-container>
   </div>
@@ -25,8 +25,7 @@ export default {
   },
   data() {
     return {}
-  },
-  mutations: {}
+  }
 }
 </script>
 
