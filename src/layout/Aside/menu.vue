@@ -1,15 +1,16 @@
 <template>
   <div>
     <el-menu
-      default-active="1"
-      class="el-menu-vertical-demo"
-      background-color="#222d32"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+      v-if='menuList'
+      :collapse='$store.state.menu.foldedstatus'
+      active-text-color='#ffd04b'
+      background-color='#222d32'
+      class='el-menu-vertical-demo'
+      default-active='1'
       router
-      :collapse="$store.state.menu.foldedstatus"
+      text-color='#fff'
     >
-      <MenuItem v-for="(item, i) in menuList" :key="i" :item="item"></MenuItem>
+      <MenuItem v-for='(item, i) in menuList' :key='i' :item='item'></MenuItem>
     </el-menu>
   </div>
 </template>
@@ -18,6 +19,7 @@
 import { mapGetters, mapState } from 'vuex'
 import MenuItem from './menuItem.vue'
 import { removeChildren, filterMenus } from '@/utils/removeChildren'
+
 export default {
   name: 'Menu',
   components: {
@@ -35,14 +37,11 @@ export default {
       // const data = removeChildren(this.nav)
       // return filterMenus(data)
     }
-  },
-  created() {
-    console.log(this.menuList)
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .el-menu {
   border-right: none;
 }

@@ -1,93 +1,95 @@
 <template>
   <div>
-    <el-card class="box-card">
-      <el-breadcrumb iconfont separator-class="el-icon-arrow-right">
+    <el-card class='box-card'>
+      <el-breadcrumb iconfont separator-class='el-icon-arrow-right'>
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/sys/users' }"
-          >系统管理
+        >系统管理
         </el-breadcrumb-item>
         <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       </el-breadcrumb>
-      <div class="btn">
+      <div class='btn'>
         用户名
         <el-input
-          v-model="query.username"
-          placeholder="请输入内容"
-          size="small "
-          style="width: 200px; margin-top: 20px"
+          v-model='query.username'
+          placeholder='请输入内容'
+          size='small '
+          style='width: 200px; margin-top: 20px'
         ></el-input>
         <el-button
-          size="small"
-          style="margin-left: 10px"
-          type="success"
-          @click="getUserList"
+          size='small'
+          style='margin-left: 10px'
+          type='success'
+          @click='getUserList'
         >
-          <i class="el-icon-search"></i>
+          <i class='el-icon-search'></i>
           查询
         </el-button>
-        <el-button icon="el-icon-edit" type="primary" @click="addUser"
-          >新增
+        <el-button icon='el-icon-edit' type='primary' @click='addUser'
+        >新增
         </el-button>
       </div>
       <!-- 表格 -->
-      <Table v-loading="loading" :clos="clos" :data="userList">
+      <Table v-loading='loading' :clos='clos' :data='userList'>
         <!--        头像-->
-        <template v-slot:avatar="{ row }">
-          <el-avatar :src="row.avatar"></el-avatar>
+        <template v-slot:avatar='{ row }'>
+          <el-avatar :src='row.avatar'></el-avatar>
         </template>
         <!--        角色-->
-        <template v-slot:roles="{ row }">
-          <el-tag v-for="item in row.roles" :key="item.id"
-            >{{ item.name }}
+        <template v-slot:roles='{ row }'>
+          <el-tag v-for='item in row.roles' :key='item.id'
+          >{{ item.name }}
           </el-tag>
         </template>
         <!--        状态-->
-        <template v-slot:status="{ row }">
+        <template v-slot:status='{ row }'>
           <el-switch
-            active-value="1"
-            inactive-value="0"
-            @change="stateBtn(row)"
+            active-value='1'
+            inactive-value='0'
+            @change='stateBtn(row)'
           >
           </el-switch>
         </template>
         <!--        操作-->
-        <template v-slot:action="{ row }">
+        <template v-slot:action='{ row }'>
           <el-button
+            v-permission="'sys:user:update'"
             plain
-            size="mini"
-            type="primary"
-            @click="
+            size='mini'
+            type='primary'
+            @click='
               model = { ...row }
               $refs.from.open()
-            "
-            >编辑
+            '
+          >编辑
           </el-button>
-          <el-button plain size="mini" type="warning" @click="handleRole(row)"
-            >分配角色</el-button
+          <el-button v-permission="'sys:user:assign'" plain size='mini' type='warning' @click='handleRole(row)'
+          >分配角色
+          </el-button
           >
-          <el-button plain size="mini" type="danger">删除</el-button>
+          <el-button v-permission="'sys:user:del'" plain size='mini' type='danger'>删除</el-button>
         </template>
       </Table>
       <!-- 分页 -->
-      <Page v-model="query" :total="total" @change="getUserList"></Page>
+      <Page v-model='query' :total='total' @change='getUserList'></Page>
       <!-- From表单 添加&编辑-->
       <From
-        ref="from"
-        v-model="model"
-        :options="options"
-        :title="title"
-        @determine="determine"
+        ref='from'
+        v-model='model'
+        :options='options'
+        :title='title'
+        @determine='determine'
       >
       </From>
-      <Dialog ref="dilog" @determine="Dialogcon">
-        <el-form label-width="50px">
-          <el-form-item label="角色">
-            <el-select v-model="integers" multiple style="width: 100%">
+      <Dialog ref='dilog' @determine='Dialogcon'>
+        <el-form label-width='50px'>
+          <el-form-item label='角色'>
+            <el-select v-model='integers' multiple style='width: 100%'>
               <el-option
-                v-for="item in roleList"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
+                v-for='item in roleList'
+                :key='item.id'
+                :label='item.name'
+                :value='item.id'
               />
             </el-select>
           </el-form-item>
@@ -207,7 +209,10 @@ export default {
     async getUserList() {
       try {
         this.loading = true
-        const { records, total } = await UserApi.userList(this.query)
+        const {
+          records,
+          total
+        } = await UserApi.userList(this.query)
         this.userList = records
         this.total = total
       } catch (error) {
@@ -219,7 +224,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .btn {
   position: relative;
   width: 100%;

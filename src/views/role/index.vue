@@ -1,87 +1,91 @@
 <template>
   <div>
-    <el-card class="box-card">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-card class='box-card'>
+      <el-breadcrumb separator-class='el-icon-arrow-right'>
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/sys/users' }"
-          >系统管理</el-breadcrumb-item
+        >系统管理
+        </el-breadcrumb-item
         >
         <el-breadcrumb-item>角色列表</el-breadcrumb-item>
       </el-breadcrumb>
 
-      <div class="btn">
+      <div class='btn'>
         角色
         <el-input
-          v-model="query.name"
-          placeholder="请输入内容"
-          size="small "
-          style="width: 200px; margin-top: 20px"
+          v-model='query.name'
+          placeholder='请输入内容'
+          size='small '
+          style='width: 200px; margin-top: 20px'
         ></el-input>
         <el-button
-          type="success"
-          size="small"
-          style="margin-left: 10px"
-          @click="getRoleList"
+          size='small'
+          style='margin-left: 10px'
+          type='success'
+          @click='getRoleList'
         >
-          <i class="el-icon-search"></i>
-          查询</el-button
+          <i class='el-icon-search'></i>
+          查询
+        </el-button
         >
         <el-button
-          class="primary"
-          icon="el-icon-edit"
-          type="primary"
-          @click="addUser"
-          >新增
+          class='primary'
+          icon='el-icon-edit'
+          type='primary'
+          @click='addUser'
+        >新增
         </el-button>
         <!-- 表格 -->
-        <Table :clos="clos" :data="roleList" v-loading="loading">
+        <Table v-loading='loading' :clos='clos' :data='roleList'>
           <!-- 状态 -->
-          <template v-slot:status="{ row }">
+          <template v-slot:status='{ row }'>
             <el-switch
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              @change="getState(row)"
+              active-color='#13ce66'
+              inactive-color='#ff4949'
+              @change='getState(row)'
             >
             </el-switch>
           </template>
           <!-- 操作 -->
-          <template v-slot:action="{ row }">
+          <template v-slot:action='{ row }'>
             <el-button
-              type="primary"
               plain
-              size="mini"
-              @click="
+              size='mini'
+              type='primary'
+              @click='
                 model = { ...row }
                 $refs.from.open()
-              "
-              >编辑</el-button
+              '
+            >编辑
+            </el-button
             >
-            <el-button plain size="mini" type="warning" @click="EditRole(row)"
-              >分配权限</el-button
+            <el-button plain size='mini' type='warning' @click='EditRole(row)'
+            >分配权限
+            </el-button
             >
-            <el-button type="danger" plain size="mini">删除</el-button>
+            <el-button plain size='mini' type='danger'>删除</el-button>
           </template>
         </Table>
         <!-- 分页 -->
-        <Page v-model="query" @change="getRoleList" :total="total"></Page>
+        <Page v-model='query' :total='total' @change='getRoleList'></Page>
         <!-- From表单 添加&编辑-->
         <From
-          ref="from"
-          v-model="model"
-          :options="options"
-          :title="title"
-          @determine="determine"
+          ref='from'
+          v-model='model'
+          :options='options'
+          :title='title'
+          @determine='determine'
         >
         </From>
-        <Dialog ref="dilog" @determine="Dialogcon">
+        <Dialog ref='dilog' @determine='Dialogcon'>
           <el-tree
-            :data="treeData"
-            :default-checked-keys="checkedKeys"
-            :props="defaultProps"
+            :data='treeData'
+            :default-checked-keys='checkedKeys'
+            :props='defaultProps'
             default-expand-all
-            node-key="id"
+            node-key='id'
             show-checkbox
-            @check="handleCheckChange"
+            @check='handleCheckChange'
           ></el-tree>
         </Dialog>
       </div>
@@ -95,6 +99,7 @@ import UserApi from '@/api/user'
 import options from './options'
 import clos from './clos'
 import { notifyTips } from '@/utils/notify'
+
 export default {
   name: 'RolePage',
   data() {
@@ -201,8 +206,10 @@ export default {
     async getRoleList() {
       try {
         this.loading = true
-        const { records, total } = await RoleApi.roleList(this.query)
-        console.log(records)
+        const {
+          records,
+          total
+        } = await RoleApi.roleList(this.query)
         this.roleList = records
         this.total = total
       } catch (error) {
@@ -214,10 +221,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .btn {
   position: relative;
   width: 100%;
+
   .primary {
     position: absolute;
     right: 4px;

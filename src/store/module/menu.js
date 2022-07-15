@@ -1,10 +1,12 @@
 import UserApi from '@/api/user'
 import { getItem, setItem } from '@/utils/storage'
+
 export default {
   namespaced: true,
   state: {
     menu: [],
-    foldedstatus: false
+    foldedstatus: false,
+    actions: []
   },
   mutations: {
     setfolded(state) {
@@ -13,6 +15,9 @@ export default {
     // 侧边栏
     setNav(state, menu) {
       state.menu = menu
+    },
+    setActionList(state, actions) {
+      state.actions = actions
     }
   },
   actions: {
@@ -21,7 +26,11 @@ export default {
       try {
         const { menus, authoritys } = await UserApi.nav()
         commit('setNav', menus)
-        return { menus, authoritys }
+        commit('setActionList', authoritys)
+        return {
+          menus,
+          authoritys
+        }
       } catch (error) {
         console.log(error)
       }
